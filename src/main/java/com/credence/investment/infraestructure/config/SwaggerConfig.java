@@ -1,4 +1,4 @@
-package com.credence.investment.infraestructure.swagger;
+package com.credence.investment.infraestructure.config;
 
 import org.springframework.context.annotation.Bean;
 
