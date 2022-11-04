@@ -1,15 +1,14 @@
-package com.credence.investment.domain.entity;
+package com.credence.investment.infraestructure.entity;
 
-import lombok.Getter;
+import com.credence.investment.domain.enums.StatusEnum;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class UserEntity {
 
@@ -26,7 +25,13 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false, length = 10)
+    private String phone;
+
     @ManyToOne(optional = false)
     private RolEntity rol;
+
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
 
 }

@@ -1,14 +1,12 @@
-package com.credence.investment.domain.entity;
+package com.credence.investment.infraestructure.entity;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class RolEntity {
 
