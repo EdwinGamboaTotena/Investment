@@ -7,7 +7,7 @@ import com.credence.investment.domain.model.User;
 import java.util.List;
 import java.util.UUID;
 
-public interface UserService {
+public interface IUserService {
 
     public List<User> getUsersList();
 
