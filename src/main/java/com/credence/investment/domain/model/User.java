@@ -1,7 +1,7 @@
 package com.credence.investment.domain.model;
 
+import com.credence.investment.domain.enums.RolEnum;
 import com.credence.investment.domain.enums.StatusEnum;
-import com.credence.investment.infraestructure.entity.RolEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +16,6 @@ public class User {
     private String lastname;
     private String email;
     private String phone;
-    private RolEntity rol;
+    private RolEnum rol;
     private StatusEnum status;
 }

@@ -1,5 +1,6 @@
 package com.credence.investment.infraestructure.entity;
 
+import com.credence.investment.domain.enums.RolEnum;
 import com.credence.investment.domain.enums.StatusEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class UserEntity {
     private String phone;
 
     @ManyToOne(optional = false)
-    private RolEntity rol;
+    private RolEnum rol;
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;

@@ -7,7 +7,6 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-
 @Data
 @NoArgsConstructor
 public class Investment {
