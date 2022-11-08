@@ -5,15 +5,14 @@ import com.credence.investment.application.dto.UserDto;
 import com.credence.investment.domain.model.User;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface IUserService {
 
     public List<User> getUsersList();
 
-    public User getUserById(UUID id);
+    public User getUserById(String id);
 
     public User createUser(UserDto userDto);
 
-    public void changePassword(PasswordDto passwordDto);
+    public void updatePassword(PasswordDto passwordDto);
 }

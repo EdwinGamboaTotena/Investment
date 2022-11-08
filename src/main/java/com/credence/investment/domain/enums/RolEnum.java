@@ -8,7 +8,7 @@ public enum RolEnum {
 
     private String value;
 
-    private RolEnum(String value){
-        this.value=value;
+    private RolEnum(String value) {
+        this.value = value;
     }
 }

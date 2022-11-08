@@ -2,19 +2,22 @@ package com.credence.investment.infraestructure.entity;
 
 import com.credence.investment.domain.enums.RolEnum;
 import com.credence.investment.domain.enums.StatusEnum;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Data
-@NoArgsConstructor
+@Builder
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
+    @Column(length = 36, nullable = false, updatable = false)
     private UUID id;
 
     @Column(nullable = false)
@@ -29,7 +32,7 @@ public class UserEntity {
     @Column(nullable = false, length = 10)
     private String phone;
 
-    @ManyToOne(optional = false)
+    @Enumerated(EnumType.STRING)
     private RolEnum rol;
 
     @Enumerated(EnumType.STRING)
