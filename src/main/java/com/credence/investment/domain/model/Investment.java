@@ -2,16 +2,17 @@ package com.credence.investment.domain.model;
 
 import com.credence.investment.domain.enums.StatusEnum;
 import com.credence.investment.infraestructure.entity.UserEntity;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
-@NoArgsConstructor
+@Builder
 public class Investment {
 
-    private UUID id;
+    private String id;
     private UserEntity owner;
     private double amount;
     private String currency;

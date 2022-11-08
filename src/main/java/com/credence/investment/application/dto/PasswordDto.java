@@ -1,8 +1,11 @@
 package com.credence.investment.application.dto;
 
-import java.util.UUID;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class PasswordDto {
-    private UUID id;
+    private String id;
     private String newPassword;
 }

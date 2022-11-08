@@ -3,6 +3,7 @@ package com.credence.investment.infraestructure.entity;
 import com.credence.investment.domain.enums.StatusEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,7 +15,9 @@ import java.util.UUID;
 public class InvestmentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
+    @Column(length = 36, nullable = false, updatable = false)
     private UUID id;
 
     @ManyToOne(optional = false)
