@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -33,4 +34,10 @@ public class ProjectEntity {
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
+
+    @Column(nullable = false)
+    private LocalDateTime createDate;
+
+    @Column()
+    private LocalDateTime updateDate;
 }

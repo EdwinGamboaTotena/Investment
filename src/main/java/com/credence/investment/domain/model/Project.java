@@ -3,7 +3,8 @@ package com.credence.investment.domain.model;
 import com.credence.investment.domain.enums.StatusEnum;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -15,4 +16,7 @@ public class Project {
     private int expectedPercentage;
     private String currencyUsed;
     private StatusEnum status;
+
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
 }
