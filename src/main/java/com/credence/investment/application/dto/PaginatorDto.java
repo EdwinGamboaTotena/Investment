@@ -1,11 +1,16 @@
 package com.credence.investment.application.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
-@NoArgsConstructor
-public class PaginatorDto {
-    private int page;
-    private int size;
+public class PaginatorDto<T> {
+
+    private List<T> content;
+    private int totalPages;
+    private long totalElements;
 }

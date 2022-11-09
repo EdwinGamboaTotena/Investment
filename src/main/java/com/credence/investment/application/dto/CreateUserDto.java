@@ -6,10 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UserDto {
+public class CreateUserDto {
     private String name;
     private String lastname;
     private String email;
     private String phone;
+    private String password;
     private RolEnum rol;
 }

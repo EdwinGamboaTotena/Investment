@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -33,10 +33,10 @@ public class InvestmentEntity {
     private boolean isActive = true;
 
     @Column(nullable = false)
-    private LocalDate createDate;
+    private LocalDateTime createDate;
 
     @Column()
-    private LocalDate updateDate;
+    private LocalDateTime updateDate;
 
     @Column()
     private int periodInMonths;
