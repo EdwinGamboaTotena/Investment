@@ -34,7 +34,7 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, length = 10)
+    @Column(length = 10)
     private String phone;
 
     @Column(nullable = false)

@@ -1,4 +1,4 @@
-package com.credence.investment.infraestructure.dao.jpa;
+package com.credence.investment.infraestructure.persistence.jpa;
 
 import com.credence.investment.domain.enums.StatusEnum;
 import com.credence.investment.infraestructure.entity.UserEntity;

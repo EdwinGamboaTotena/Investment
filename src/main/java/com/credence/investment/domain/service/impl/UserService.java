@@ -58,22 +58,9 @@ public class UserService implements IUserService {
                 .createDate(LocalDateTime.now())
                 .updateDate(LocalDateTime.now())
                 .build();
-        try {
-            return userRepository.createUser(user);
-        }   catch(DataIntegrityViolationException dv) {
-        System.out.println("dv = " + dv);
-        throw new BadRequest(DUPLICATE_EMAIL);
-    } catch(
-    ConstraintViolationException ce) {
-        System.out.println("ce = " + ce);
-        throw new BadRequest(DUPLICATE_EMAIL);
-    } catch(RuntimeException re) {
-        System.out.println("re = " + re);
-        throw new BadRequest(DUPLICATE_EMAIL);
-    } catch (Exception e) {
-        System.out.println("e = " + e);
-        throw new BadRequest(DUPLICATE_EMAIL);
-    }
+
+        user.isValid();
+        return userRepository.createUser(user);
     }
 
     @Override
@@ -89,6 +76,7 @@ public class UserService implements IUserService {
 
         user.setId(id);
 
+        user.isValid();
         return userRepository.updateUser(user);
     }
 
