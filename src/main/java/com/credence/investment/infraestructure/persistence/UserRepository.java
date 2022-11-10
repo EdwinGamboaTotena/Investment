@@ -1,9 +1,9 @@
-package com.credence.investment.infraestructure.dao;
+package com.credence.investment.infraestructure.persistence;
 
 import com.credence.investment.domain.dao.IUserRepository;
 import com.credence.investment.domain.exception.BadRequest;
 import com.credence.investment.domain.model.User;
-import com.credence.investment.infraestructure.dao.jpa.UserJpa;
+import com.credence.investment.infraestructure.persistence.jpa.UserJpa;
 import com.credence.investment.infraestructure.entity.UserEntity;
 import com.credence.investment.infraestructure.factory.UserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
