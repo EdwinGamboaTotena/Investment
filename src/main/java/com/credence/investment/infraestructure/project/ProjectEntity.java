@@ -1,6 +1,8 @@
 package com.credence.investment.infraestructure.project;
 
-import com.credence.investment.domain.common.enums.StatusEnum;
+import com.credence.investment.domain.project.ProjectStatusEnum;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,7 +13,9 @@ import java.util.UUID;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProjectEntity {
 
     @Id
@@ -24,16 +28,22 @@ public class ProjectEntity {
     private String name;
 
     @Column()
+    private String description;
+
+    @Column()
+    private String url;
+
+    @Column()
     private double amountUsed;
 
     @Column()
     private int expectedPercentage;
 
-    @Column(nullable = false, length = 5)
+    @Column(nullable = false, length = 10)
     private String currencyUsed;
 
     @Enumerated(EnumType.STRING)
-    private StatusEnum status;
+    private ProjectStatusEnum status;
 
     @Column(nullable = false)
     private LocalDateTime createDate;

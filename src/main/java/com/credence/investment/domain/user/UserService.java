@@ -1,7 +1,6 @@
 package com.credence.investment.domain.user;
 
 import com.credence.investment.domain.common.dto.PaginatorDto;
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.domain.common.exception.BadRequest;
 import com.credence.investment.domain.user.dto.CreateUserDto;
 import com.credence.investment.domain.user.dto.PasswordDto;
@@ -25,11 +24,11 @@ public class UserService implements IUserService {
     public static final String USER_NOT_FOUND = "No se encuentra el usuario a actualizar";
 
     @Autowired
-    private IUserRepository userRepository;
+    private IUserRepository repository;
 
     @Override
-    public PaginatorDto<User> getUsersList(int page, int size) {
-        Page<User> users = userRepository.getUsersList(page, size);
+    public PaginatorDto<User> getUsers(int page, int size) {
+        Page<User> users = repository.getUsers(page, size);
         PaginatorDto<User> paginator = new PaginatorDto<>();
 
         paginator.setTotalPages(users.getTotalPages());
@@ -40,12 +39,12 @@ public class UserService implements IUserService {
 
     @Override
     public User getUserById(String id) {
-        return userRepository.getUserById(UUID.fromString(id));
+        return repository.getUserById(UUID.fromString(id));
     }
 
     @Override
     public User createUser(CreateUserDto createUserDto) {
-        User user = userRepository.getByEmail(createUserDto.getEmail());
+        User user = repository.getByEmail(createUserDto.getEmail());
         if (user != null) {
             throw new BadRequest(DUPLICATE_EMAIL);
         }
@@ -56,35 +55,35 @@ public class UserService implements IUserService {
         user.setPhone(createUserDto.getPhone());
         user.setPassword(createUserDto.getPassword());
         user.setRol(createUserDto.getRol());
-        user.setStatus(StatusEnum.ACTIVE);
+        user.setActive(true);
         user.setCreateDate(LocalDateTime.now());
         user.setUpdateDate(LocalDateTime.now());
 
         user.isValid();
 
-        return userRepository.createUser(user);
+        return repository.createUser(user);
     }
 
     @Override
     public void updateUser(String id, UpdateUserDto updateUserDto) {
-        User user = userRepository.getUserById(UUID.fromString(id));
+        User user = repository.getUserById(UUID.fromString(id));
         if (user == null) {
             throw new BadRequest(USER_NOT_FOUND);
         }
         user.setName(updateUserDto.getName());
         user.setLastname(updateUserDto.getLastname());
         user.setPhone(updateUserDto.getPhone());
+        user.setActive(updateUserDto.isActive());
         user.setRol(updateUserDto.getRol());
-        user.setStatus(updateUserDto.getStatus());
         user.setUpdateDate(LocalDateTime.now());
 
         user.isValid();
-        userRepository.updateUser(user);
+        repository.updateUser(user);
     }
 
 
     @Override
     public void updatePassword(PasswordDto passwordDto) {
-        userRepository.updatePassword(UUID.fromString(passwordDto.getId()), passwordDto.getNewPassword());
+        repository.updatePassword(UUID.fromString(passwordDto.getId()), passwordDto.getNewPassword());
     }
 }

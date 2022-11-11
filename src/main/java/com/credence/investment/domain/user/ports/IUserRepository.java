@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface IUserRepository {
 
-    Page<User> getUsersList(int page, int size);
+    Page<User> getUsers(int page, int size);
 
     User getUserById(UUID id);
 

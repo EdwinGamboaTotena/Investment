@@ -1,6 +1,6 @@
 package com.credence.investment.infraestructure.payment;
 
-import com.credence.investment.domain.common.enums.StatusEnum;
+import com.credence.investment.domain.payment.PaymentStatusEnum;
 import com.credence.investment.infraestructure.investment.InvestmentEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,5 +43,5 @@ public class PaymentEntity {
     private String note;
 
     @Enumerated(EnumType.STRING)
-    private StatusEnum status;
+    private PaymentStatusEnum status;
 }

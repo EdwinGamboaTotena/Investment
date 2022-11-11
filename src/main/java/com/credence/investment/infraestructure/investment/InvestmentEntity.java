@@ -1,6 +1,5 @@
 package com.credence.investment.infraestructure.investment;
 
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.infraestructure.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,7 +51,7 @@ public class InvestmentEntity {
     @Column()
     private String note;
 
-    @Enumerated(EnumType.STRING)
-    private StatusEnum status;
+    @Column()
+    private boolean isActive;
 
 }

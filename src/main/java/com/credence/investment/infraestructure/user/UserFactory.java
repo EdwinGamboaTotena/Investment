@@ -24,7 +24,7 @@ public class UserFactory {
                 .phone(entity.getPhone())
                 .password(entity.getPassword())
                 .rol(entity.getRol())
-                .status(entity.getStatus())
+                .isActive(entity.isActive())
                 .createDate(entity.getCreateDate())
                 .updateDate(entity.getUpdateDate())
                 .build();
@@ -41,7 +41,7 @@ public class UserFactory {
                 .phone(model.getPhone())
                 .password(model.getPassword())
                 .rol(model.getRol())
-                .status(model.getStatus())
+                .isActive(model.isActive())
                 .createDate(model.getCreateDate())
                 .updateDate(model.getUpdateDate())
                 .build();

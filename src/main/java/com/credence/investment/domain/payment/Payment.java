@@ -1,6 +1,5 @@
 package com.credence.investment.domain.payment;
 
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.infraestructure.investment.InvestmentEntity;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +18,6 @@ public class Payment {
     private LocalDateTime updateDate;
     private boolean isAddedToCapital;
     private String note;
-    private StatusEnum status;
+    private PaymentStatusEnum status;
 
 }

@@ -1,6 +1,5 @@
 package com.credence.investment.domain.investment.dto;
 
-import com.credence.investment.domain.common.enums.StatusEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,5 +14,5 @@ public class UpdateInvestmentDto {
     private int percentagePerMoth;
     private boolean isCompoundInterest;
     private String note;
-    private StatusEnum status;
+    private boolean isActive;
 }

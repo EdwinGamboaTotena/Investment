@@ -1,7 +1,6 @@
 package com.credence.investment.infraestructure.common.exception;
 
 import lombok.AllArgsConstructor;
-
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
