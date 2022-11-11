@@ -1,6 +1,5 @@
 package com.credence.investment.domain.investment;
 
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.domain.common.formater.StringFormater;
 import com.credence.investment.domain.user.User;
 import lombok.AllArgsConstructor;
@@ -26,7 +25,7 @@ public class Investment {
     private int percentagePerMoth;
     private boolean isCompoundInterest;
     private String note;
-    private StatusEnum status;
+    private boolean isActive;
 
     public void setCurrency(String currency) {
         this.currency = StringFormater.trimp(currency);

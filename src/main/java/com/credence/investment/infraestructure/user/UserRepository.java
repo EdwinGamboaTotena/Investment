@@ -20,7 +20,7 @@ public class UserRepository implements IUserRepository {
     private UserJpa jpa;
 
     @Override
-    public Page<User> getUsersList(int page, int size) {
+    public Page<User> getUsers(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         Page<UserEntity> users = jpa.findAll(paging);
         return UserFactory.entityToModel(users);

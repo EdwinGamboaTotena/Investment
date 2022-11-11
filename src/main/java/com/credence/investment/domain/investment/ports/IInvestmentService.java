@@ -1,14 +1,13 @@
 package com.credence.investment.domain.investment.ports;
 
 import com.credence.investment.domain.common.dto.PaginatorDto;
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.domain.investment.Investment;
 import com.credence.investment.domain.investment.dto.CreateInvestmentDto;
 import com.credence.investment.domain.investment.dto.UpdateInvestmentDto;
 
 public interface IInvestmentService {
 
-    PaginatorDto<Investment> getInvestmentsList(int page, int size);
+    PaginatorDto<Investment> getInvestments(int page, int size);
 
     Investment getInvestmentById(String id);
 
@@ -16,5 +15,5 @@ public interface IInvestmentService {
 
     void updateInvestment(String id, UpdateInvestmentDto updateInvestmentDto);
 
-    void changeStatus(String id, StatusEnum status);
+    void changeStatus(String id, boolean status);
 }

@@ -1,6 +1,6 @@
-package com.credence.investment.domain.common.enums;
+package com.credence.investment.domain.project;
 
-public enum StatusEnum {
+public enum ProjectStatusEnum {
     ACTIVE("Activo"),
     DISABLED("Desactivado"),
     REVIEW("En revision"),
@@ -8,7 +8,7 @@ public enum StatusEnum {
 
     private String value;
 
-    private StatusEnum(String value) {
+    private ProjectStatusEnum(String value) {
         this.value = value;
     }
 }

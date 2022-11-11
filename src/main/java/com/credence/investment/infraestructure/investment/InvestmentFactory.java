@@ -1,12 +1,9 @@
 package com.credence.investment.infraestructure.investment;
 
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.domain.investment.Investment;
-import com.credence.investment.domain.user.User;
 import com.credence.investment.infraestructure.user.UserFactory;
 import org.springframework.data.domain.Page;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class InvestmentFactory {
@@ -18,17 +15,6 @@ public class InvestmentFactory {
         return page.map(p -> entityToModel(p));
     }
 
-    private String id;
-    private User owner;
-    private double amount;
-    private String currency;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
-    private int periodInMonths;
-    private int percentage;
-    private boolean isCompoundInterest;
-    private String note;
-    private StatusEnum status;
     public static final Investment entityToModel(InvestmentEntity entity) {
         if (entity == null) return null;
         Investment model = Investment.builder()
@@ -42,7 +28,7 @@ public class InvestmentFactory {
                 .percentagePerMoth(entity.getPercentagePerMoth())
                 .isCompoundInterest(entity.isCompoundInterest())
                 .note(entity.getNote())
-                .status(entity.getStatus())
+                .isActive(entity.isActive())
                 .build();
 
         return model;
@@ -61,7 +47,7 @@ public class InvestmentFactory {
                 .percentagePerMoth(model.getPercentagePerMoth())
                 .isCompoundInterest(model.isCompoundInterest())
                 .note(model.getNote())
-                .status(model.getStatus())
+                .isActive(model.isActive())
                 .build();
 
 

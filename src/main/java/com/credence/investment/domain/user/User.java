@@ -1,7 +1,6 @@
 package com.credence.investment.domain.user;
 
 import com.credence.investment.domain.common.enums.RolEnum;
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.domain.common.exception.BadRequest;
 import com.credence.investment.domain.common.formater.StringFormater;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,7 +36,7 @@ public class User {
     private String email;
     private String phone;
     private RolEnum rol;
-    private StatusEnum status;
+    private boolean isActive;
 
     @JsonIgnore
     private String password;

@@ -1,7 +1,6 @@
 package com.credence.investment.domain.investment;
 
 import com.credence.investment.domain.common.dto.PaginatorDto;
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.domain.common.exception.BadRequest;
 import com.credence.investment.domain.investment.dto.CreateInvestmentDto;
 import com.credence.investment.domain.investment.dto.UpdateInvestmentDto;
@@ -22,11 +21,11 @@ public class InvestmentService implements IInvestmentService {
     public static final String INVESTMENT_NOT_FOUND = "La inversion a actualizar no se encuentra";
 
     @Autowired
-    private IInvestmentRepository investmentRepository;
+    private IInvestmentRepository repository;
 
     @Override
-    public PaginatorDto<Investment> getInvestmentsList(int page, int size) {
-        Page<Investment> investments = investmentRepository.getInvestmentsList(page, size);
+    public PaginatorDto<Investment> getInvestments(int page, int size) {
+        Page<Investment> investments = repository.getInvestments(page, size);
         PaginatorDto<Investment> paginator = new PaginatorDto<>();
 
         paginator.setTotalPages(investments.getTotalPages());
@@ -37,7 +36,7 @@ public class InvestmentService implements IInvestmentService {
 
     @Override
     public Investment getInvestmentById(String id) {
-        return investmentRepository.getInvestmentsById(UUID.fromString(id));
+        return repository.getInvestmentsById(UUID.fromString(id));
     }
 
     @Override
@@ -52,15 +51,15 @@ public class InvestmentService implements IInvestmentService {
         investment.setPercentagePerMoth(createInvestmentDto.getPercentagePerMoth());
         investment.setCompoundInterest(createInvestmentDto.isCompoundInterest());
         investment.setNote(createInvestmentDto.getNote());
-        investment.setStatus(StatusEnum.ACTIVE);
+        investment.setActive(true);
 
-        investment = investmentRepository.createInvestments(investment);
+        investment = repository.createInvestments(investment);
         return investment;
     }
 
     @Override
     public void updateInvestment(String id, UpdateInvestmentDto updateInvestmentDto) {
-        Investment investment = investmentRepository.getInvestmentsById(UUID.fromString(id));
+        Investment investment = repository.getInvestmentsById(UUID.fromString(id));
         if (investment == null) {
             throw new BadRequest(INVESTMENT_NOT_FOUND);
         }
@@ -71,19 +70,18 @@ public class InvestmentService implements IInvestmentService {
         investment.setPeriodInMonths(updateInvestmentDto.getPeriodInMonths());
         investment.setPercentagePerMoth(updateInvestmentDto.getPercentagePerMoth());
         investment.setCompoundInterest(updateInvestmentDto.isCompoundInterest());
-        investment.setStatus(updateInvestmentDto.getStatus());
+        investment.setActive(updateInvestmentDto.isActive());
         investment.setNote(updateInvestmentDto.getNote());
 
-        investmentRepository.updateInvestments(investment);
+        repository.updateInvestments(investment);
     }
 
     @Override
-    public void changeStatus(String id, StatusEnum status) {
-        Investment investment = investmentRepository.getInvestmentsById(UUID.fromString(id));
+    public void changeStatus(String id, boolean status) {
+        Investment investment = repository.getInvestmentsById(UUID.fromString(id));
         if (investment == null) {
             throw new BadRequest(INVESTMENT_NOT_FOUND);
         }
-        investment.setStatus(status);
-        investmentRepository.changeStatus(UUID.fromString(id), status);
+        repository.changeStatus(UUID.fromString(id), status);
     }
 }

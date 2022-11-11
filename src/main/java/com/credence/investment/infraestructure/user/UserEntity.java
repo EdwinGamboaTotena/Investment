@@ -1,7 +1,6 @@
 package com.credence.investment.infraestructure.user;
 
 import com.credence.investment.domain.common.enums.RolEnum;
-import com.credence.investment.domain.common.enums.StatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,8 +42,8 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private RolEnum rol;
 
-    @Enumerated(EnumType.STRING)
-    private StatusEnum status;
+    @Column()
+    private boolean isActive;
 
     @Column(nullable = false)
     private LocalDateTime createDate;

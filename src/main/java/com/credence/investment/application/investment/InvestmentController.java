@@ -1,7 +1,6 @@
 package com.credence.investment.application.investment;
 
 import com.credence.investment.domain.common.dto.PaginatorDto;
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.domain.investment.Investment;
 import com.credence.investment.domain.investment.dto.CreateInvestmentDto;
 import com.credence.investment.domain.investment.dto.UpdateInvestmentDto;
@@ -18,7 +17,7 @@ public class InvestmentController {
 
     @GetMapping
     public PaginatorDto<Investment> investmentList(@RequestParam int page, @RequestParam int size) {
-        return investmentService.getInvestmentsList(page, size);
+        return investmentService.getInvestments(page, size);
     }
 
     @GetMapping("/{id}")
@@ -37,7 +36,7 @@ public class InvestmentController {
     }
 
     @PatchMapping("/{id}")
-    public void changeStatus(@PathVariable String id, @RequestParam StatusEnum status) {
+    public void changeStatus(@PathVariable String id, @RequestParam boolean status) {
         investmentService.changeStatus(id, status);
     }
 

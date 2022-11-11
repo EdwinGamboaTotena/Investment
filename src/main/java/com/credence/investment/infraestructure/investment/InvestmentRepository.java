@@ -1,6 +1,5 @@
 package com.credence.investment.infraestructure.investment;
 
-import com.credence.investment.domain.common.enums.StatusEnum;
 import com.credence.investment.domain.common.exception.BadRequest;
 import com.credence.investment.domain.investment.Investment;
 import com.credence.investment.domain.investment.ports.IInvestmentRepository;
@@ -21,7 +20,7 @@ public class InvestmentRepository implements IInvestmentRepository {
     private InvestmentJpa jpa;
 
     @Override
-    public Page<Investment> getInvestmentsList(int page, int size) {
+    public Page<Investment> getInvestments(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         Page<InvestmentEntity> investmentEntities = jpa.findAll(paging);
         return InvestmentFactory.entityToModel(investmentEntities);
@@ -48,7 +47,7 @@ public class InvestmentRepository implements IInvestmentRepository {
     }
 
     @Override
-    public void changeStatus(UUID id, StatusEnum status) {
+    public void changeStatus(UUID id, boolean status) {
         jpa.changeStatus(id, status);
     }
 }

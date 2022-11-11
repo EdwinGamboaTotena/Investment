@@ -18,7 +18,7 @@ public class UserController {
 
     @GetMapping
     public PaginatorDto<User> userList(@RequestParam int page, @RequestParam int size) {
-        return userSer.getUsersList(page, size);
+        return userSer.getUsers(page, size);
     }
 
     @GetMapping("/{id}")
