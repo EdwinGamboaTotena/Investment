@@ -1,13 +1,14 @@
 package com.credence.investment.infraestructure.project;
 
 import com.credence.investment.domain.project.Project;
+import com.credence.investment.infraestructure.user.UserMapper;
 import org.springframework.data.domain.Page;
 
 import java.util.UUID;
 
-public class ProjectFactory {
+public class ProjectMapper {
 
-    private ProjectFactory() {
+    private ProjectMapper() {
     }
 
     public static final Page<Project> entityToModel(Page<ProjectEntity> page) {
@@ -26,6 +27,7 @@ public class ProjectFactory {
                 .expectedPercentage(entity.getExpectedPercentage())
                 .currencyUsed(entity.getCurrencyUsed())
                 .status(entity.getStatus())
+                .createBy(UserMapper.entityToModel(entity.getCreateBy()))
                 .createDate(entity.getCreateDate())
                 .updateDate(entity.getUpdateDate())
                 .build();
@@ -43,6 +45,7 @@ public class ProjectFactory {
                 .expectedPercentage(model.getExpectedPercentage())
                 .currencyUsed(model.getCurrencyUsed())
                 .status(model.getStatus())
+                .createBy(UserMapper.modelToEntity(model.getCreateBy()))
                 .createDate(model.getCreateDate())
                 .updateDate(model.getUpdateDate())
                 .build();

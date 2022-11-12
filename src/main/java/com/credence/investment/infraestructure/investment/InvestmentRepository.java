@@ -1,6 +1,5 @@
 package com.credence.investment.infraestructure.investment;
 
-import com.credence.investment.domain.common.exception.BadRequest;
 import com.credence.investment.domain.investment.Investment;
 import com.credence.investment.domain.investment.ports.IInvestmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,35 +13,32 @@ import java.util.UUID;
 @Repository
 public class InvestmentRepository implements IInvestmentRepository {
 
-    public static final String INVESTMENT_NOT_FOUND = "No se encontro la inversion con el id ingresado";
-
     @Autowired
     private InvestmentJpa jpa;
 
     @Override
-    public Page<Investment> getInvestments(int page, int size) {
+    public Page<Investment> get(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-        Page<InvestmentEntity> investmentEntities = jpa.findAll(paging);
-        return InvestmentFactory.entityToModel(investmentEntities);
+        Page<InvestmentEntity> entities = jpa.findAll(paging);
+        return InvestmentMapper.entityToModel(entities);
     }
 
     @Override
-    public Investment getInvestmentsById(UUID id) {
-        InvestmentEntity entity = jpa.findById(id)
-                .orElseThrow(() -> new BadRequest(INVESTMENT_NOT_FOUND));
-        return InvestmentFactory.entityToModel(entity);
+    public Investment getById(UUID id) {
+        InvestmentEntity entity = jpa.findById(id).orElse(null);
+        return InvestmentMapper.entityToModel(entity);
     }
 
     @Override
-    public Investment createInvestments(Investment investment) {
-        InvestmentEntity entity = InvestmentFactory.modelToEntity(investment);
+    public Investment create(Investment model) {
+        InvestmentEntity entity = InvestmentMapper.modelToEntity(model);
         entity = jpa.save(entity);
-        return InvestmentFactory.entityToModel(entity);
+        return InvestmentMapper.entityToModel(entity);
     }
 
     @Override
-    public void updateInvestments(Investment investment) {
-        InvestmentEntity entity = InvestmentFactory.modelToEntity(investment);
+    public void update(Investment model) {
+        InvestmentEntity entity = InvestmentMapper.modelToEntity(model);
         jpa.save(entity);
     }
 

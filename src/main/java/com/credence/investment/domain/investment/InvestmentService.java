@@ -6,6 +6,7 @@ import com.credence.investment.domain.investment.dto.CreateInvestmentDto;
 import com.credence.investment.domain.investment.dto.UpdateInvestmentDto;
 import com.credence.investment.domain.investment.ports.IInvestmentRepository;
 import com.credence.investment.domain.investment.ports.IInvestmentService;
+import com.credence.investment.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,8 @@ public class InvestmentService implements IInvestmentService {
     private IInvestmentRepository repository;
 
     @Override
-    public PaginatorDto<Investment> getInvestments(int page, int size) {
-        Page<Investment> investments = repository.getInvestments(page, size);
+    public PaginatorDto<Investment> get(int page, int size) {
+        Page<Investment> investments = repository.get(page, size);
         PaginatorDto<Investment> paginator = new PaginatorDto<>();
 
         paginator.setTotalPages(investments.getTotalPages());
@@ -35,12 +36,12 @@ public class InvestmentService implements IInvestmentService {
     }
 
     @Override
-    public Investment getInvestmentById(String id) {
-        return repository.getInvestmentsById(UUID.fromString(id));
+    public Investment getById(String id) {
+        return repository.getById(UUID.fromString(id));
     }
 
     @Override
-    public Investment createInvestment(CreateInvestmentDto createInvestmentDto) {
+    public Investment create(CreateInvestmentDto createInvestmentDto, String userId) {
         Investment investment = new Investment();
         investment.setOwner(createInvestmentDto.getOwner());
         investment.setAmount(createInvestmentDto.getAmount());
@@ -51,15 +52,16 @@ public class InvestmentService implements IInvestmentService {
         investment.setPercentagePerMoth(createInvestmentDto.getPercentagePerMoth());
         investment.setCompoundInterest(createInvestmentDto.isCompoundInterest());
         investment.setNote(createInvestmentDto.getNote());
+        investment.setCreateBy(User.builder().id(userId).build());
         investment.setActive(true);
 
-        investment = repository.createInvestments(investment);
+        investment = repository.create(investment);
         return investment;
     }
 
     @Override
-    public void updateInvestment(String id, UpdateInvestmentDto updateInvestmentDto) {
-        Investment investment = repository.getInvestmentsById(UUID.fromString(id));
+    public void update(String id, UpdateInvestmentDto updateInvestmentDto) {
+        Investment investment = repository.getById(UUID.fromString(id));
         if (investment == null) {
             throw new BadRequest(INVESTMENT_NOT_FOUND);
         }
@@ -73,12 +75,12 @@ public class InvestmentService implements IInvestmentService {
         investment.setActive(updateInvestmentDto.isActive());
         investment.setNote(updateInvestmentDto.getNote());
 
-        repository.updateInvestments(investment);
+        repository.update(investment);
     }
 
     @Override
     public void changeStatus(String id, boolean status) {
-        Investment investment = repository.getInvestmentsById(UUID.fromString(id));
+        Investment investment = repository.getById(UUID.fromString(id));
         if (investment == null) {
             throw new BadRequest(INVESTMENT_NOT_FOUND);
         }

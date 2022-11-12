@@ -2,6 +2,9 @@ package com.credence.investment.infraestructure.payment;
 
 import com.credence.investment.domain.payment.PaymentStatusEnum;
 import com.credence.investment.infraestructure.investment.InvestmentEntity;
+import com.credence.investment.infraestructure.user.UserEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -12,7 +15,9 @@ import java.util.UUID;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class PaymentEntity {
 
     @Id
@@ -21,7 +26,7 @@ public class PaymentEntity {
     @Column(length = 36, nullable = false, updatable = false)
     private UUID id;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private InvestmentEntity investment;
 
     @Column()
@@ -29,12 +34,6 @@ public class PaymentEntity {
 
     @Column(nullable = false, length = 5)
     private String currency;
-
-    @Column(nullable = false)
-    private LocalDateTime createDate;
-
-    @Column()
-    private LocalDateTime updateDate;
 
     @Column()
     private boolean isAddedToCapital;
@@ -44,4 +43,13 @@ public class PaymentEntity {
 
     @Enumerated(EnumType.STRING)
     private PaymentStatusEnum status;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private UserEntity createBy;
+
+    @Column(nullable = false)
+    private LocalDateTime createDate;
+
+    @Column()
+    private LocalDateTime updateDate;
 }

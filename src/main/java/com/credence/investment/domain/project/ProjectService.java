@@ -6,12 +6,17 @@ import com.credence.investment.domain.project.dto.CreateProjectDto;
 import com.credence.investment.domain.project.dto.UpdateProjectDto;
 import com.credence.investment.domain.project.port.IProjectRepository;
 import com.credence.investment.domain.project.port.IProjectService;
+import com.credence.investment.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Service
+@Transactional
 public class ProjectService implements IProjectService {
 
     public static final String PROJECT_NOT_FOUND = "No se encuentra el projecto a actualizar";
@@ -19,8 +24,8 @@ public class ProjectService implements IProjectService {
     private IProjectRepository repository;
 
     @Override
-    public PaginatorDto<Project> getProjects(int page, int size) {
-        Page<Project> projects = repository.getProjects(page, size);
+    public PaginatorDto<Project> get(int page, int size) {
+        Page<Project> projects = repository.get(page, size);
         PaginatorDto<Project> paginator = new PaginatorDto<>();
 
         paginator.setTotalPages(projects.getTotalPages());
@@ -30,12 +35,12 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
-    public Project getProjectById(String id) {
-        return repository.getProjectById(UUID.fromString(id));
+    public Project getById(String id) {
+        return repository.getById(UUID.fromString(id));
     }
 
     @Override
-    public Project createProject(CreateProjectDto dto) {
+    public Project create(CreateProjectDto dto, String user) {
         Project project = new Project();
         project.setName(dto.getName());
         project.setDescription(dto.getDescription());
@@ -44,16 +49,17 @@ public class ProjectService implements IProjectService {
         project.setExpectedPercentage(dto.getExpectedPercentage());
         project.setCurrencyUsed(dto.getCurrencyUsed());
         project.setStatus(ProjectStatusEnum.REVIEW);
+        project.setCreateBy(User.builder().id(user).build());
         project.setCreateDate(LocalDateTime.now());
         project.setUpdateDate(LocalDateTime.now());
 
         project.isValid();
-        return repository.createProject(project);
+        return repository.create(project);
     }
 
     @Override
-    public void updateProject(String id, UpdateProjectDto dto) {
-        Project project = repository.getProjectById(UUID.fromString(id));
+    public void update(String id, UpdateProjectDto dto) {
+        Project project = repository.getById(UUID.fromString(id));
         if (project == null) {
             throw new BadRequest(PROJECT_NOT_FOUND);
         }
@@ -67,6 +73,6 @@ public class ProjectService implements IProjectService {
         project.setUpdateDate(LocalDateTime.now());
 
         project.isValid();
-        repository.updateProject(project);
+        repository.update(project);
     }
 }

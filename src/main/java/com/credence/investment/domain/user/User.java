@@ -22,7 +22,7 @@ public class User {
 
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
     private static final String PHONE_REGEX = "^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";
-    private static final String INVALID_EMAIL = "El email ingresado es invalido";
+    private static final String INVALID_EMAIL = "El email ingresado no es valido";
     private static final String INVALID_NAME = "El nombre no puede estar vacio";
     private static final String INVALID_LASTNAME = "El apellido no puede estar vacio";
     private static final String INVALID_PHONE = "El telefono ingresado no es valido";

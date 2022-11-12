@@ -8,13 +8,13 @@ import java.util.UUID;
 
 public interface IInvestmentRepository {
 
-    Page<Investment> getInvestments(int page, int size);
+    Page<Investment> get(int page, int size);
 
-    Investment getInvestmentsById(UUID id);
+    Investment getById(UUID id);
 
-    Investment createInvestments(Investment investment);
+    Investment create(Investment investment);
 
-    void updateInvestments(Investment investment);
+    void update(Investment investment);
 
     void changeStatus(UUID id, boolean status);
 }

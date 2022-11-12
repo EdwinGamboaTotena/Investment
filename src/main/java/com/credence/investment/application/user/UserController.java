@@ -14,31 +14,31 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private IUserService userSer;
+    private IUserService service;
 
     @GetMapping
     public PaginatorDto<User> userList(@RequestParam int page, @RequestParam int size) {
-        return userSer.getUsers(page, size);
+        return service.get(page, size);
     }
 
     @GetMapping("/{id}")
     public User userById(@PathVariable String id) {
-        return userSer.getUserById(id);
+        return service.getById(id);
     }
 
     @PostMapping
     public User createUser(@RequestBody CreateUserDto user) {
-        return userSer.createUser(user);
+        return service.create(user);
     }
 
     @PutMapping("/{id}")
     public void updateUser(@PathVariable String id, @RequestBody UpdateUserDto user) {
-        userSer.updateUser(id, user);
+        service.update(id, user);
     }
 
     @PatchMapping("/reset-password")
     public void updatePassword(@RequestBody PasswordDto passwordDto) {
-        userSer.updatePassword(passwordDto);
+        service.updatePassword(passwordDto);
     }
 
 }

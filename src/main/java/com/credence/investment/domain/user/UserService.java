@@ -27,8 +27,8 @@ public class UserService implements IUserService {
     private IUserRepository repository;
 
     @Override
-    public PaginatorDto<User> getUsers(int page, int size) {
-        Page<User> users = repository.getUsers(page, size);
+    public PaginatorDto<User> get(int page, int size) {
+        Page<User> users = repository.get(page, size);
         PaginatorDto<User> paginator = new PaginatorDto<>();
 
         paginator.setTotalPages(users.getTotalPages());
@@ -38,12 +38,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getUserById(String id) {
-        return repository.getUserById(UUID.fromString(id));
+    public User getById(String id) {
+        return repository.getById(UUID.fromString(id));
     }
 
     @Override
-    public User createUser(CreateUserDto createUserDto) {
+    public User create(CreateUserDto createUserDto) {
         User user = repository.getByEmail(createUserDto.getEmail());
         if (user != null) {
             throw new BadRequest(DUPLICATE_EMAIL);
@@ -61,12 +61,12 @@ public class UserService implements IUserService {
 
         user.isValid();
 
-        return repository.createUser(user);
+        return repository.create(user);
     }
 
     @Override
-    public void updateUser(String id, UpdateUserDto updateUserDto) {
-        User user = repository.getUserById(UUID.fromString(id));
+    public void update(String id, UpdateUserDto updateUserDto) {
+        User user = repository.getById(UUID.fromString(id));
         if (user == null) {
             throw new BadRequest(USER_NOT_FOUND);
         }
@@ -78,7 +78,7 @@ public class UserService implements IUserService {
         user.setUpdateDate(LocalDateTime.now());
 
         user.isValid();
-        repository.updateUser(user);
+        repository.update(user);
     }
 
 

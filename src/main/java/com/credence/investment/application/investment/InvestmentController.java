@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.*;
 public class InvestmentController {
 
     @Autowired
-    private IInvestmentService investmentService;
+    private IInvestmentService service;
 
     @GetMapping
     public PaginatorDto<Investment> investmentList(@RequestParam int page, @RequestParam int size) {
-        return investmentService.getInvestments(page, size);
+        return service.get(page, size);
     }
 
     @GetMapping("/{id}")
     public Investment investmentById(@PathVariable String id) {
-        return investmentService.getInvestmentById(id);
+        return service.getById(id);
     }
 
     @PostMapping
-    public Investment createinvestment(@RequestBody CreateInvestmentDto dto) {
-        return investmentService.createInvestment(dto);
+    public Investment createinvestment(@RequestBody CreateInvestmentDto dto, @RequestHeader String user) {
+        return service.create(dto, user);
     }
 
     @PutMapping("/{id}")
     public void updateInvestment(@PathVariable String id, @RequestBody UpdateInvestmentDto dto) {
-        investmentService.updateInvestment(id, dto);
+        service.update(id, dto);
     }
 
     @PatchMapping("/{id}")
     public void changeStatus(@PathVariable String id, @RequestParam boolean status) {
-        investmentService.changeStatus(id, status);
+        service.changeStatus(id, status);
     }
 
 }
