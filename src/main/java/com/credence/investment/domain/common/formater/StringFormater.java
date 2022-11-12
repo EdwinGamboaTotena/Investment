@@ -7,6 +7,6 @@ public class StringFormater {
             return s.trim();
         }
 
-        return s;
+        return null;
     }
 }

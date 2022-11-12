@@ -5,9 +5,9 @@ import org.springframework.data.domain.Page;
 
 import java.util.UUID;
 
-public class UserFactory {
+public class UserMapper {
 
-    private UserFactory() {
+    private UserMapper() {
     }
 
     public static final Page<User> entityToModel(Page<UserEntity> page) {

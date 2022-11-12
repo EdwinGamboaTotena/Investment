@@ -7,12 +7,12 @@ import com.credence.investment.domain.project.dto.UpdateProjectDto;
 
 public interface IProjectService {
 
-    PaginatorDto<Project> getProjects(int page, int size);
+    PaginatorDto<Project> get(int page, int size);
 
-    Project getProjectById(String id);
+    Project getById(String id);
 
-    Project createProject(CreateProjectDto dto);
+    Project create(CreateProjectDto dto, String user);
 
-    void updateProject(String id, UpdateProjectDto dto);
+    void update(String id, UpdateProjectDto dto);
 
 }

@@ -1,6 +1,7 @@
 package com.credence.investment.infraestructure.project;
 
 import com.credence.investment.domain.project.ProjectStatusEnum;
+import com.credence.investment.infraestructure.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,6 +45,9 @@ public class ProjectEntity {
 
     @Enumerated(EnumType.STRING)
     private ProjectStatusEnum status;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private UserEntity createBy;
 
     @Column(nullable = false)
     private LocalDateTime createDate;

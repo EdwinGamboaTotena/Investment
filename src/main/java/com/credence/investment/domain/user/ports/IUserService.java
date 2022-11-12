@@ -8,13 +8,13 @@ import com.credence.investment.domain.user.dto.UpdateUserDto;
 
 public interface IUserService {
 
-    PaginatorDto<User> getUsers(int page, int size);
+    PaginatorDto<User> get(int page, int size);
 
-    User getUserById(String id);
+    User getById(String id);
 
-    User createUser(CreateUserDto createUserDto);
+    User create(CreateUserDto createUserDto);
 
-    void updateUser(String id, UpdateUserDto updateUserDto);
+    void update(String id, UpdateUserDto updateUserDto);
 
     void updatePassword(PasswordDto passwordDto);
 }

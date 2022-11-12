@@ -7,13 +7,13 @@ import com.credence.investment.domain.investment.dto.UpdateInvestmentDto;
 
 public interface IInvestmentService {
 
-    PaginatorDto<Investment> getInvestments(int page, int size);
+    PaginatorDto<Investment> get(int page, int size);
 
-    Investment getInvestmentById(String id);
+    Investment getById(String id);
 
-    Investment createInvestment(CreateInvestmentDto createInvestmentDto);
+    Investment create(CreateInvestmentDto createInvestmentDto, String userId);
 
-    void updateInvestment(String id, UpdateInvestmentDto updateInvestmentDto);
+    void update(String id, UpdateInvestmentDto updateInvestmentDto);
 
     void changeStatus(String id, boolean status);
 }

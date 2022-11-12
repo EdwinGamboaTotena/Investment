@@ -24,7 +24,7 @@ public class InvestmentEntity {
     @Column(length = 36, nullable = false, updatable = false)
     private UUID id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private UserEntity owner;
 
     @Column()
@@ -32,12 +32,6 @@ public class InvestmentEntity {
 
     @Column(nullable = false, length = 5)
     private String currency;
-
-    @Column(nullable = false)
-    private LocalDateTime createDate;
-
-    @Column()
-    private LocalDateTime updateDate;
 
     @Column()
     private int periodInMonths;
@@ -53,5 +47,14 @@ public class InvestmentEntity {
 
     @Column()
     private boolean isActive;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private UserEntity createBy;
+
+    @Column(nullable = false)
+    private LocalDateTime createDate;
+
+    @Column()
+    private LocalDateTime updateDate;
 
 }

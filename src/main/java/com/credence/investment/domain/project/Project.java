@@ -2,6 +2,7 @@ package com.credence.investment.domain.project;
 
 import com.credence.investment.domain.common.exception.BadRequest;
 import com.credence.investment.domain.common.formater.StringFormater;
+import com.credence.investment.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class Project {
     private String currencyUsed;
     private ProjectStatusEnum status;
 
+    private User createBy;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 

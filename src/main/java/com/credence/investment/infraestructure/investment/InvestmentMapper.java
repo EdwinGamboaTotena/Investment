@@ -1,14 +1,14 @@
 package com.credence.investment.infraestructure.investment;
 
 import com.credence.investment.domain.investment.Investment;
-import com.credence.investment.infraestructure.user.UserFactory;
+import com.credence.investment.infraestructure.user.UserMapper;
 import org.springframework.data.domain.Page;
 
 import java.util.UUID;
 
-public class InvestmentFactory {
+public class InvestmentMapper {
 
-    private InvestmentFactory() {
+    private InvestmentMapper() {
     }
 
     public static final Page<Investment> entityToModel(Page<InvestmentEntity> page) {
@@ -19,16 +19,17 @@ public class InvestmentFactory {
         if (entity == null) return null;
         Investment model = Investment.builder()
                 .id(entity.getId().toString())
-                .owner(UserFactory.entityToModel(entity.getOwner()))
+                .owner(UserMapper.entityToModel(entity.getOwner()))
                 .amount(entity.getAmount())
                 .currency(entity.getCurrency())
-                .createDate(entity.getCreateDate())
-                .updateDate(entity.getUpdateDate())
                 .periodInMonths(entity.getPeriodInMonths())
                 .percentagePerMoth(entity.getPercentagePerMoth())
                 .isCompoundInterest(entity.isCompoundInterest())
                 .note(entity.getNote())
                 .isActive(entity.isActive())
+                .createBy(UserMapper.entityToModel(entity.getCreateBy()))
+                .createDate(entity.getCreateDate())
+                .updateDate(entity.getUpdateDate())
                 .build();
 
         return model;
@@ -38,16 +39,17 @@ public class InvestmentFactory {
         if (model == null) return null;
 
         InvestmentEntity entity = InvestmentEntity.builder()
-                .owner(UserFactory.modelToEntity(model.getOwner()))
+                .owner(UserMapper.modelToEntity(model.getOwner()))
                 .amount(model.getAmount())
                 .currency(model.getCurrency())
-                .createDate(model.getCreateDate())
-                .updateDate(model.getUpdateDate())
                 .periodInMonths(model.getPeriodInMonths())
                 .percentagePerMoth(model.getPercentagePerMoth())
                 .isCompoundInterest(model.isCompoundInterest())
                 .note(model.getNote())
                 .isActive(model.isActive())
+                .createBy(UserMapper.modelToEntity(model.getCreateBy()))
+                .createDate(model.getCreateDate())
+                .updateDate(model.getUpdateDate())
                 .build();
 
 

@@ -7,11 +7,11 @@ import java.util.UUID;
 
 public interface IProjectRepository {
 
-    Page<Project> getProjects(int page, int size);
+    Page<Project> get(int page, int size);
 
-    Project getProjectById(UUID id);
+    Project getById(UUID id);
 
-    Project createProject(Project model);
+    Project create(Project model);
 
-    void updateProject(Project model);
+    void update(Project model);
 }

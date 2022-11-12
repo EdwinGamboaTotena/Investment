@@ -1,6 +1,5 @@
 package com.credence.investment.infraestructure.user;
 
-import com.credence.investment.domain.common.exception.BadRequest;
 import com.credence.investment.domain.user.User;
 import com.credence.investment.domain.user.ports.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +13,20 @@ import java.util.UUID;
 @Repository
 public class UserRepository implements IUserRepository {
 
-    public static final String USER_NOT_FOUND = "No se a encontrado el usuario";
-
     @Autowired
     private UserJpa jpa;
 
     @Override
-    public Page<User> getUsers(int page, int size) {
+    public Page<User> get(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-        Page<UserEntity> users = jpa.findAll(paging);
-        return UserFactory.entityToModel(users);
+        Page<UserEntity> entities = jpa.findAll(paging);
+        return UserMapper.entityToModel(entities);
     }
 
     @Override
-    public User getUserById(UUID id) {
-        UserEntity user = jpa.findById(id)
-                .orElseThrow(() -> new BadRequest(USER_NOT_FOUND));
-        return UserFactory.entityToModel(user);
+    public User getById(UUID id) {
+        UserEntity entity = jpa.findById(id).orElse(null);
+        return UserMapper.entityToModel(entity);
     }
 
     @Override
@@ -39,16 +35,16 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public User createUser(User user) {
-        UserEntity userEntity = UserFactory.modelToEntity(user);
-        userEntity = jpa.save(userEntity);
-        return UserFactory.entityToModel(userEntity);
+    public User create(User model) {
+        UserEntity entity = UserMapper.modelToEntity(model);
+        entity = jpa.save(entity);
+        return UserMapper.entityToModel(entity);
     }
 
     @Override
-    public void updateUser(User user) {
-        UserEntity userEntity = UserFactory.modelToEntity(user);
-        jpa.save(userEntity);
+    public void update(User user) {
+        UserEntity entity = UserMapper.modelToEntity(user);
+        jpa.save(entity);
     }
 
     @Override

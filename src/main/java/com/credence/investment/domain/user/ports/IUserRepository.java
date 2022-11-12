@@ -7,15 +7,15 @@ import java.util.UUID;
 
 public interface IUserRepository {
 
-    Page<User> getUsers(int page, int size);
+    Page<User> get(int page, int size);
 
-    User getUserById(UUID id);
+    User getById(UUID id);
 
     User getByEmail(String email);
 
-    User createUser(User user);
+    User create(User user);
 
-    void updateUser(User user);
+    void update(User user);
 
     void updatePassword(UUID id, String pass);
 }

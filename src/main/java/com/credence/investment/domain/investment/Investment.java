@@ -19,13 +19,15 @@ public class Investment {
     private User owner;
     private double amount;
     private String currency;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
     private int periodInMonths;
     private int percentagePerMoth;
     private boolean isCompoundInterest;
     private String note;
     private boolean isActive;
+
+    private User createBy;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
 
     public void setCurrency(String currency) {
         this.currency = StringFormater.trimp(currency);
