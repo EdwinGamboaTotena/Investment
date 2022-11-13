@@ -50,8 +50,8 @@ public class ProjectEntity {
     private UserEntity createBy;
 
     @Column(nullable = false)
-    private LocalDateTime createDate;
+    private LocalDateTime createAt;
 
     @Column()
-    private LocalDateTime updateDate;
+    private LocalDateTime updateAt;
 }

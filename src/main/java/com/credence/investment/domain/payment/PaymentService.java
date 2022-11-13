@@ -60,8 +60,8 @@ public class PaymentService implements IPaymentService {
         payment.setNote(dto.getNote());
         payment.setStatus(PaymentStatusEnum.TO_PAY);
         payment.setCreateBy(User.builder().id(user).build());
-        payment.setCreateDate(LocalDateTime.now());
-        payment.setUpdateDate(LocalDateTime.now());
+        payment.setCreateAt(LocalDateTime.now());
+        payment.setUpdateAt(LocalDateTime.now());
 
         payment.isValid();
         return repository.create(payment);
@@ -79,7 +79,7 @@ public class PaymentService implements IPaymentService {
         payment.setNote(dto.getNote());
         payment.setStatus(dto.getStatus());
         payment.setCreateBy(User.builder().id(user).build());
-        payment.setUpdateDate(LocalDateTime.now());
+        payment.setUpdateAt(LocalDateTime.now());
 
         payment.isValid();
         repository.update(payment);

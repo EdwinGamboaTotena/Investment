@@ -27,8 +27,8 @@ public class PaymentMapper {
                 .note(entity.getNote())
                 .status(entity.getStatus())
                 .createBy(UserMapper.entityToModel(entity.getCreateBy()))
-                .createDate(entity.getCreateDate())
-                .updateDate(entity.getUpdateDate())
+                .createAt(entity.getCreateAt())
+                .updateAt(entity.getUpdateAt())
                 .build();
 
         return model;
@@ -44,8 +44,8 @@ public class PaymentMapper {
                 .note(model.getNote())
                 .status(model.getStatus())
                 .createBy(UserMapper.modelToEntity(model.getCreateBy()))
-                .createDate(model.getCreateDate())
-                .updateDate(model.getUpdateDate())
+                .createAt(model.getCreateAt())
+                .updateAt(model.getUpdateAt())
                 .build();
 
         if (model.getId() != null && !model.getId().isBlank()) {

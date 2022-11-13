@@ -41,8 +41,8 @@ public class User {
     @JsonIgnore
     private String password;
 
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 
     public void setName(String name) {
         this.name = StringFormater.trimp(name);

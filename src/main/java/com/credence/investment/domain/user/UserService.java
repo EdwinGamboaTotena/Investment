@@ -56,8 +56,8 @@ public class UserService implements IUserService {
         user.setPassword(createUserDto.getPassword());
         user.setRol(createUserDto.getRol());
         user.setActive(true);
-        user.setCreateDate(LocalDateTime.now());
-        user.setUpdateDate(LocalDateTime.now());
+        user.setCreateAt(LocalDateTime.now());
+        user.setUpdateAt(LocalDateTime.now());
 
         user.isValid();
 
@@ -75,7 +75,7 @@ public class UserService implements IUserService {
         user.setPhone(updateUserDto.getPhone());
         user.setActive(updateUserDto.isActive());
         user.setRol(updateUserDto.getRol());
-        user.setUpdateDate(LocalDateTime.now());
+        user.setUpdateAt(LocalDateTime.now());
 
         user.isValid();
         repository.update(user);

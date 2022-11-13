@@ -50,8 +50,8 @@ public class ProjectService implements IProjectService {
         project.setCurrencyUsed(dto.getCurrencyUsed());
         project.setStatus(ProjectStatusEnum.REVIEW);
         project.setCreateBy(User.builder().id(user).build());
-        project.setCreateDate(LocalDateTime.now());
-        project.setUpdateDate(LocalDateTime.now());
+        project.setCreateAt(LocalDateTime.now());
+        project.setUpdateAt(LocalDateTime.now());
 
         project.isValid();
         return repository.create(project);
@@ -70,7 +70,7 @@ public class ProjectService implements IProjectService {
         project.setExpectedPercentage(dto.getExpectedPercentage());
         project.setCurrencyUsed(dto.getCurrencyUsed());
         project.setStatus(dto.getStatus());
-        project.setUpdateDate(LocalDateTime.now());
+        project.setUpdateAt(LocalDateTime.now());
 
         project.isValid();
         repository.update(project);

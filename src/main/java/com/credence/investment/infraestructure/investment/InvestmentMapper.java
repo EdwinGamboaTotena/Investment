@@ -28,8 +28,8 @@ public class InvestmentMapper {
                 .note(entity.getNote())
                 .isActive(entity.isActive())
                 .createBy(UserMapper.entityToModel(entity.getCreateBy()))
-                .createDate(entity.getCreateDate())
-                .updateDate(entity.getUpdateDate())
+                .createAt(entity.getCreateAt())
+                .updateAt(entity.getUpdateAt())
                 .build();
 
         return model;
@@ -48,8 +48,8 @@ public class InvestmentMapper {
                 .note(model.getNote())
                 .isActive(model.isActive())
                 .createBy(UserMapper.modelToEntity(model.getCreateBy()))
-                .createDate(model.getCreateDate())
-                .updateDate(model.getUpdateDate())
+                .createAt(model.getCreateAt())
+                .updateAt(model.getUpdateAt())
                 .build();
 
 

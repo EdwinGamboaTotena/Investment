@@ -24,8 +24,8 @@ public class Payment {
     private PaymentStatusEnum status;
 
     private User createBy;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 
     public void isValid() {
 

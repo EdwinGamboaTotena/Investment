@@ -46,9 +46,9 @@ public class UserEntity {
     private boolean isActive;
 
     @Column(nullable = false)
-    private LocalDateTime createDate;
+    private LocalDateTime createAt;
 
     @Column()
-    private LocalDateTime updateDate;
+    private LocalDateTime updateAt;
 
 }

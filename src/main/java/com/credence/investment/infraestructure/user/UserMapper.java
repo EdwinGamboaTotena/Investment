@@ -25,8 +25,8 @@ public class UserMapper {
                 .password(entity.getPassword())
                 .rol(entity.getRol())
                 .isActive(entity.isActive())
-                .createDate(entity.getCreateDate())
-                .updateDate(entity.getUpdateDate())
+                .createAt(entity.getCreateAt())
+                .updateAt(entity.getUpdateAt())
                 .build();
 
         return model;
@@ -42,8 +42,8 @@ public class UserMapper {
                 .password(model.getPassword())
                 .rol(model.getRol())
                 .isActive(model.isActive())
-                .createDate(model.getCreateDate())
-                .updateDate(model.getUpdateDate())
+                .createAt(model.getCreateAt())
+                .updateAt(model.getUpdateAt())
                 .build();
 
         if (model.getId() != null && !model.getId().isBlank()) {

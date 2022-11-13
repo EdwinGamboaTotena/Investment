@@ -46,8 +46,8 @@ public class InvestmentService implements IInvestmentService {
         investment.setOwner(createInvestmentDto.getOwner());
         investment.setAmount(createInvestmentDto.getAmount());
         investment.setCurrency(createInvestmentDto.getCurrency());
-        investment.setCreateDate(LocalDateTime.now());
-        investment.setUpdateDate(LocalDateTime.now());
+        investment.setCreateAt(LocalDateTime.now());
+        investment.setUpdateAt(LocalDateTime.now());
         investment.setPeriodInMonths(createInvestmentDto.getPeriodInMonths());
         investment.setPercentagePerMoth(createInvestmentDto.getPercentagePerMoth());
         investment.setCompoundInterest(createInvestmentDto.isCompoundInterest());
@@ -68,7 +68,7 @@ public class InvestmentService implements IInvestmentService {
         investment.setOwner(updateInvestmentDto.getOwner());
         investment.setAmount(updateInvestmentDto.getAmount());
         investment.setCurrency(updateInvestmentDto.getCurrency());
-        investment.setUpdateDate(LocalDateTime.now());
+        investment.setUpdateAt(LocalDateTime.now());
         investment.setPeriodInMonths(updateInvestmentDto.getPeriodInMonths());
         investment.setPercentagePerMoth(updateInvestmentDto.getPercentagePerMoth());
         investment.setCompoundInterest(updateInvestmentDto.isCompoundInterest());

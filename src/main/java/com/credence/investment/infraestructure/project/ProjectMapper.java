@@ -28,8 +28,8 @@ public class ProjectMapper {
                 .currencyUsed(entity.getCurrencyUsed())
                 .status(entity.getStatus())
                 .createBy(UserMapper.entityToModel(entity.getCreateBy()))
-                .createDate(entity.getCreateDate())
-                .updateDate(entity.getUpdateDate())
+                .createAt(entity.getCreateAt())
+                .updateAt(entity.getUpdateAt())
                 .build();
 
         return model;
@@ -46,8 +46,8 @@ public class ProjectMapper {
                 .currencyUsed(model.getCurrencyUsed())
                 .status(model.getStatus())
                 .createBy(UserMapper.modelToEntity(model.getCreateBy()))
-                .createDate(model.getCreateDate())
-                .updateDate(model.getUpdateDate())
+                .createAt(model.getCreateAt())
+                .updateAt(model.getUpdateAt())
                 .build();
 
         if (model.getId() != null && !model.getId().isBlank()) {

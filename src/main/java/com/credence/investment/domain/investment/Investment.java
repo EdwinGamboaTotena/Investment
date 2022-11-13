@@ -26,8 +26,8 @@ public class Investment {
     private boolean isActive;
 
     private User createBy;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 
     public void setCurrency(String currency) {
         this.currency = StringFormater.trimp(currency);
