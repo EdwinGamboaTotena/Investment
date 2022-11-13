@@ -1,6 +1,7 @@
 package com.credence.investment.domain.investment;
 
 import com.credence.investment.domain.common.formater.StringFormater;
+import com.credence.investment.domain.payment.Payment;
 import com.credence.investment.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -24,6 +27,8 @@ public class Investment {
     private boolean isCompoundInterest;
     private String note;
     private boolean isActive;
+
+    private List<Payment> payments;
 
     private User createBy;
     private LocalDateTime createAt;
@@ -45,5 +50,12 @@ public class Investment {
         } else {
             this.owner.setId(ownerId);
         }
+    }
+
+    public void addPayment(Payment payment) {
+        if(payments == null) {
+            payments = new ArrayList<>();
+        }
+        payments.add(payment);
     }
 }

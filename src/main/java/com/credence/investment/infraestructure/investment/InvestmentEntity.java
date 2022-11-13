@@ -1,5 +1,6 @@
 package com.credence.investment.infraestructure.investment;
 
+import com.credence.investment.infraestructure.payment.PaymentEntity;
 import com.credence.investment.infraestructure.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -48,6 +50,10 @@ public class InvestmentEntity {
 
     @Column()
     private boolean isActive;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id")
+    private List<PaymentEntity> payments;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private UserEntity createBy;

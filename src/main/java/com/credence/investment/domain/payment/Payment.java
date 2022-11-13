@@ -1,5 +1,7 @@
 package com.credence.investment.domain.payment;
 
+import com.credence.investment.domain.common.exception.BadRequest;
+import com.credence.investment.domain.common.formater.StringFormater;
 import com.credence.investment.domain.investment.Investment;
 import com.credence.investment.domain.user.User;
 import lombok.AllArgsConstructor;
@@ -15,8 +17,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Payment {
 
+    public static final String INVALID_AMOUNT = "El monto no puede ser negatico";
+
     private String id;
-    private Investment investment;
     private double amount;
     private String currency;
     private boolean isAddedToCapital;
@@ -27,7 +30,17 @@ public class Payment {
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
-    public void isValid() {
+    public void setCurrency(String currency) {
+        this.currency = StringFormater.trimp(currency);
+    }
 
+    public void setNote(String note) {
+        this.note = StringFormater.trimp(note);
+    }
+
+    public void isValid() {
+        if(amount < 0) {
+            throw new BadRequest(INVALID_AMOUNT);
+        }
     }
 }

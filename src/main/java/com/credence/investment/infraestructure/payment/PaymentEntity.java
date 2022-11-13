@@ -27,9 +27,6 @@ public class PaymentEntity {
     @Column(length = 36, nullable = false, updatable = false)
     private UUID id;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private InvestmentEntity investment;
-
     @Column()
     private double amount;
 
