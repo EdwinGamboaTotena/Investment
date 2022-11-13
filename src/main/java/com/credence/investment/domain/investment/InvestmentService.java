@@ -55,7 +55,7 @@ public class InvestmentService implements IInvestmentService {
         investment.setCreateBy(User.builder().id(userId).build());
         investment.setActive(true);
 
-        investment = repository.create(investment);
+        investment = repository.save(investment);
         return investment;
     }
 
@@ -75,7 +75,7 @@ public class InvestmentService implements IInvestmentService {
         investment.setActive(updateInvestmentDto.isActive());
         investment.setNote(updateInvestmentDto.getNote());
 
-        repository.update(investment);
+        repository.save(investment);
     }
 
     @Override

@@ -13,9 +13,7 @@ public interface IUserRepository {
 
     User getByEmail(String email);
 
-    User create(User user);
-
-    void update(User user);
+    User save(User user);
 
     void updatePassword(UUID id, String pass);
 }

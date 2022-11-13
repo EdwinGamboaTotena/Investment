@@ -30,15 +30,10 @@ public class PaymentRepository implements IPaymentRepository {
     }
 
     @Override
-    public Payment create(Payment model) {
+    public Payment save(Payment model) {
         PaymentEntity entity = PaymentMapper.modelToEntity(model);
         entity = jpa.save(entity);
         return PaymentMapper.entityToModel(entity);
     }
 
-    @Override
-    public void update(Payment model) {
-        PaymentEntity entity = PaymentMapper.modelToEntity(model);
-        jpa.save(entity);
-    }
 }

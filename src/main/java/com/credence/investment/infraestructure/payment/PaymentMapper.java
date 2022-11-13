@@ -5,7 +5,9 @@ import com.credence.investment.infraestructure.investment.InvestmentMapper;
 import com.credence.investment.infraestructure.user.UserMapper;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class PaymentMapper {
 
@@ -16,11 +18,18 @@ public class PaymentMapper {
         return page.map(p -> entityToModel(p));
     }
 
+    public static final List<Payment> entityToModel(List<PaymentEntity> list) {
+        return list.stream().map(p -> entityToModel(p)).collect(Collectors.toList());
+    }
+
+    public static final List<PaymentEntity> modelToEntity(List<Payment> list) {
+        return list.stream().map(p -> modelToEntity(p)).collect(Collectors.toList());
+    }
+
     public static final Payment entityToModel(PaymentEntity entity) {
         if (entity == null) return null;
         Payment model = Payment.builder()
                 .id(entity.getId().toString())
-                .investment(InvestmentMapper.entityToModel(entity.getInvestment()))
                 .amount(entity.getAmount())
                 .currency(entity.getCurrency())
                 .isAddedToCapital(entity.isAddedToCapital())
@@ -37,7 +46,6 @@ public class PaymentMapper {
     public static final PaymentEntity modelToEntity(Payment model) {
         if (model == null) return null;
         PaymentEntity entity = PaymentEntity.builder()
-                .investment(InvestmentMapper.modelToEntity(model.getInvestment()))
                 .amount(model.getAmount())
                 .currency(model.getCurrency())
                 .isAddedToCapital(model.isAddedToCapital())

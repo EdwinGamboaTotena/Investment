@@ -3,6 +3,7 @@ package com.credence.investment.domain.payment;
 import com.credence.investment.domain.common.dto.PaginatorDto;
 import com.credence.investment.domain.common.exception.BadRequest;
 import com.credence.investment.domain.investment.Investment;
+import com.credence.investment.domain.investment.ports.IInvestmentRepository;
 import com.credence.investment.domain.investment.ports.IInvestmentService;
 import com.credence.investment.domain.payment.dto.CreatePaymentDto;
 import com.credence.investment.domain.payment.dto.UpdatePaymentDto;
@@ -27,7 +28,7 @@ public class PaymentService implements IPaymentService {
     private IPaymentRepository repository;
 
     @Autowired
-    private IInvestmentService investmentService;
+    private IInvestmentRepository investmentRepository;
 
     @Override
     public PaginatorDto<Payment> get(String investmentId, int page, int size) {
@@ -47,13 +48,12 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public Payment create(String investmentId, CreatePaymentDto dto, String user) {
-        Investment investment = investmentService.getById(investmentId);
+        Investment investment = investmentRepository.getById(UUID.fromString(investmentId));
         if (investment == null) {
             throw new BadRequest("No se a encontrado la inversion");
         }
 
         Payment payment = new Payment();
-        payment.setInvestment(investment);
         payment.setAmount(dto.getAmount());
         payment.setCurrency(dto.getCurrency());
         payment.setAddedToCapital(investment.isCompoundInterest());
@@ -64,7 +64,11 @@ public class PaymentService implements IPaymentService {
         payment.setUpdateAt(LocalDateTime.now());
 
         payment.isValid();
-        return repository.create(payment);
+        investment.addPayment(payment);
+        return investmentRepository.save(investment)
+                .getPayments().stream()
+                .filter(p -> p.getCreateAt().equals(payment.getCreateAt()))
+                .findFirst().orElse(null);
     }
 
     @Override

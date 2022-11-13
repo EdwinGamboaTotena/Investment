@@ -30,15 +30,10 @@ public class ProjectRepository implements IProjectRepository {
     }
 
     @Override
-    public Project create(Project model) {
+    public Project save(Project model) {
         ProjectEntity entity = ProjectMapper.modelToEntity(model);
         entity = jpa.save(entity);
         return ProjectMapper.entityToModel(entity);
     }
 
-    @Override
-    public void update(Project model) {
-        ProjectEntity entity = ProjectMapper.modelToEntity(model);
-        jpa.save(entity);
-    }
 }

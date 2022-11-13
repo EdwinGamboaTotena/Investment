@@ -11,7 +11,5 @@ public interface IProjectRepository {
 
     Project getById(UUID id);
 
-    Project create(Project model);
-
-    void update(Project model);
+    Project save(Project model);
 }

@@ -52,7 +52,6 @@ public class InvestmentEntity {
     private boolean isActive;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id")
     private List<PaymentEntity> payments;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

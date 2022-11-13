@@ -1,6 +1,7 @@
 package com.credence.investment.infraestructure.investment;
 
 import com.credence.investment.domain.investment.Investment;
+import com.credence.investment.infraestructure.payment.PaymentMapper;
 import com.credence.investment.infraestructure.user.UserMapper;
 import org.springframework.data.domain.Page;
 
@@ -27,6 +28,7 @@ public class InvestmentMapper {
                 .isCompoundInterest(entity.isCompoundInterest())
                 .note(entity.getNote())
                 .isActive(entity.isActive())
+                .payments(PaymentMapper.entityToModel(entity.getPayments()))
                 .createBy(UserMapper.entityToModel(entity.getCreateBy()))
                 .createAt(entity.getCreateAt())
                 .updateAt(entity.getUpdateAt())
@@ -47,6 +49,7 @@ public class InvestmentMapper {
                 .isCompoundInterest(model.isCompoundInterest())
                 .note(model.getNote())
                 .isActive(model.isActive())
+                .payments(PaymentMapper.modelToEntity(model.getPayments()))
                 .createBy(UserMapper.modelToEntity(model.getCreateBy()))
                 .createAt(model.getCreateAt())
                 .updateAt(model.getUpdateAt())

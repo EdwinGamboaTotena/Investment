@@ -12,9 +12,7 @@ public interface IInvestmentRepository {
 
     Investment getById(UUID id);
 
-    Investment create(Investment investment);
-
-    void update(Investment investment);
+    Investment save(Investment investment);
 
     void changeStatus(UUID id, boolean status);
 }

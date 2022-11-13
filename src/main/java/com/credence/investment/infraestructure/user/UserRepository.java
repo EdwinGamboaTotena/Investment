@@ -35,17 +35,12 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public User create(User model) {
+    public User save(User model) {
         UserEntity entity = UserMapper.modelToEntity(model);
         entity = jpa.save(entity);
         return UserMapper.entityToModel(entity);
     }
 
-    @Override
-    public void update(User user) {
-        UserEntity entity = UserMapper.modelToEntity(user);
-        jpa.save(entity);
-    }
 
     @Override
     public void updatePassword(UUID id, String pass) {

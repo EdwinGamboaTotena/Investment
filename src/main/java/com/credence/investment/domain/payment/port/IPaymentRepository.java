@@ -11,7 +11,5 @@ public interface IPaymentRepository {
 
     Payment getById(UUID id);
 
-    Payment create(Payment model);
-
-    void update(Payment model);
+    Payment save(Payment model);
 }

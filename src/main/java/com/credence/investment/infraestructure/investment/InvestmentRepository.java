@@ -30,16 +30,10 @@ public class InvestmentRepository implements IInvestmentRepository {
     }
 
     @Override
-    public Investment create(Investment model) {
+    public Investment save(Investment model) {
         InvestmentEntity entity = InvestmentMapper.modelToEntity(model);
         entity = jpa.save(entity);
         return InvestmentMapper.entityToModel(entity);
-    }
-
-    @Override
-    public void update(Investment model) {
-        InvestmentEntity entity = InvestmentMapper.modelToEntity(model);
-        jpa.save(entity);
     }
 
     @Override
